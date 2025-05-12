@@ -1,0 +1,20 @@
+#!/bin/bash
+
+WEBDEV_CONTAINER="webdev"
+
+if [ "$CONTAINER_ID" == "" ];
+then        
+    SCRIPT_PATH=$(realpath $(dirname $0))
+    PROJECT_DIR=$(dirname $0)
+
+    echo "Syncing '$PROJECT_DIR' in webserver ..."
+    echo ""
+
+    podman cp "$PWD" $WEBDEV_CONTAINER:/var/www/html/
+
+    if [ "$?" == "0" ];
+    then
+        echo "Done."
+        echo ""
+    fi
+fi
